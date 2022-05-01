@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "yarn lint:format",
+    "lint": "yarn lint-staged",
     "lint:eslint": "eslint . --ext .ts,.js --fix",
     "lint:solhint": "npx solhint --fix --max-warnings 0  contracts/*.sol",
     "lint:format": "prettier --write '**/*.{sol,ts,js,json,md,yml}'",
@@ -15,6 +15,12 @@
     "ipfs:open": "open https://ipfs.io/ipfs/QmdhcMjEELiEX1PqcUwAi4sQSJV6DExw27vRgfeN6hZasA",
     "deploy:mumbai": "npx hardhat run scripts/deployMyERC1155.ts --network mumbai",
     "verify:mumbai": "npx hardhat verify --contract contracts/MyERC1155.sol:MyERC1155 0xE2BcA3f8784Ba89749d812ce38f275871c1d55AD 'ipfs://QmdhcMjEELiEX1PqcUwAi4sQSJV6DExw27vRgfeN6hZasA' 'MyERC1155' 'NFT' --network mumbai"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix",
+    "**/*.{sol,ts,js,json,md,yml}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -50,6 +56,7 @@
     "hardhat-gas-reporter": "^1.0.4",
     "hardhat-prettier": "^0.0.1",
     "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
     "prettier": "^2.5.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.6",
